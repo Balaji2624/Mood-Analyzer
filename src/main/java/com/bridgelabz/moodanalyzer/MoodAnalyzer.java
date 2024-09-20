@@ -41,8 +41,9 @@ public class MoodAnalyzer {
 
         System.out.println("Mood: " + mood);
 
-        MoodAnalyzer moodAnalyserWithMessage = new MoodAnalyzer("I am feeling so sad today!");
+        MoodAnalyzer moodAnalyserWithMessage = new MoodAnalyzer("I am feeling so happy today!");
         String m = moodAnalyserWithMessage.analyseMood();
         System.out.println("Mood: " + m);
+
     }
 }
