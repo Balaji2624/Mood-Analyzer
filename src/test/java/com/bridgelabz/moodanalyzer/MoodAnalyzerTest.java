@@ -25,6 +25,18 @@ public class MoodAnalyzerTest {
         String mood = moodAnalyzer.analyseMood(message);
         Assertions.assertEquals("Happy", mood);
     }
+
+    // TC 1.1- repeat-using constructor
+    // Test case for message "I am in Sad Mood" passed in constructor
+    @Test
+    public void givenMessageInConstructor_WhenSad_ShouldReturnSad() {
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am in Sad Mood");
+
+        String mood = moodAnalyzer.analyseMood();
+
+        Assertions.assertEquals("Sad", mood);
+    }
 }
+
 
 

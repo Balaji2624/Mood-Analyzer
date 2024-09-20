@@ -4,6 +4,26 @@ package com.bridgelabz.moodanalyzer;
 
 public class MoodAnalyzer {
 
+    private String message;
+
+    // Default constructor
+    public MoodAnalyzer() {
+    }
+
+    // Constructor with message parameter
+    public MoodAnalyzer(String message) {
+        this.message = message;
+    }
+    // using constructor message passed
+    public String analyseMood() {
+
+        if (message.toLowerCase().contains("sad")) {
+            return "Sad";
+        } else {
+            return "Happy";
+        }
+    }
+    // without constructor
     public String analyseMood(String message) {
 
         if (message.toLowerCase().contains("sad")) {
@@ -20,5 +40,9 @@ public class MoodAnalyzer {
         String mood = moodAnalyser.analyseMood(message);
 
         System.out.println("Mood: " + mood);
+
+        MoodAnalyzer moodAnalyserWithMessage = new MoodAnalyzer("I am feeling so sad today!");
+        String m = moodAnalyserWithMessage.analyseMood();
+        System.out.println("Mood: " + m);
     }
 }
