@@ -1,3 +1,5 @@
+// to check mood is HAPPPY or SAD
+
 package com.bridgelabz.moodanalyzer;
 
 public class MoodAnalyzer {
