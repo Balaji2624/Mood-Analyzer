@@ -26,19 +26,16 @@ public class MoodAnalyzer {
     }
 
     // Using exception
-    public String analyseMood() throws MoodAnalysisException {
+    public String analyseMood() {
         try {
-            if (this.message == null) {
-                throw new MoodAnalysisException("Invalid Mood: NULL message provided");
-            }
-
             if (this.message.contains("Sad")) {
                 return "Sad";
             } else {
-                return "Happy";
+                return "Happy"; // Return Happy for any other message including "Happy"
             }
         } catch (NullPointerException e) {
-            throw new MoodAnalysisException("Invalid Mood: NULL message provided");
+            // Handle null scenario by returning Happy
+            return "Happy";
         }
     }
 
@@ -50,13 +47,9 @@ public class MoodAnalyzer {
 
         System.out.println("Mood: " + mood);
 
-        try {
-            MoodAnalyzer moodAnalyserWithMessage = new MoodAnalyzer(null);  // Invalid input (null)
-            String m = moodAnalyserWithMessage.analyseMood();
-            System.out.println("Mood: " + m);
-        } catch (MoodAnalysisException e) {
-            System.out.println(e.getMessage());
-        }
+        MoodAnalyzer moodAnalyzerWithNull = new MoodAnalyzer(null);  // Invalid input (null)
+        String m = moodAnalyzerWithNull.analyseMood();
+        System.out.println("Mood: " + m);
 
     }
 }

@@ -46,6 +46,17 @@ public class MoodAnalyzerTest {
 
         Assertions.assertEquals("Happy", mood);
     }
+
+    // TC 2.1 : using exception
+    // Test case for null message in constructor, should return Happy
+    @Test
+    public void givenNullMessageInConstructor_ShouldReturnHappy() throws MoodAnalysisException {
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
+
+        String mood = moodAnalyzer.analyseMood();
+
+        Assertions.assertEquals("Happy", mood);
+    }
 }
 
 
