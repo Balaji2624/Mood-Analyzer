@@ -11,16 +11,10 @@ public class MoodAnalyzer {
     public MoodAnalyzer(String message) {
         this.message = message;
     }
-
-    // Analyze mood based on instance message
     public String analyseMood() throws MoodAnalysisException {
-        validateMood(this.message);
-        if (this.message.toLowerCase().contains("sad")) {
-            return "SAD";
-        } else {
-            return "HAPPY";
-        }
+        return analyseMood(this.message);
     }
+    
 
     // Analyze mood based on a passed message
     public String analyseMood(String message) throws MoodAnalysisException {
@@ -47,10 +41,11 @@ public class MoodAnalyzer {
             MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am in Happy Mood");
             System.out.println("Mood: " + moodAnalyzer.analyseMood());
 
-            moodAnalyzer = new MoodAnalyzer("");
+            moodAnalyzer = new MoodAnalyzer(null);
             System.out.println("Mood: " + moodAnalyzer.analyseMood());
         } catch (MoodAnalysisException e) {
-            System.out.println("Error: " + e.getMessage() + " (" + e.getErrorType() + ")");
+            System.out.println("Exception: " + e.getMessage() + " (" + e.getErrorType() + ")");
         }
+
     }
 }
