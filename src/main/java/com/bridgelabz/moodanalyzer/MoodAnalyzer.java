@@ -1,55 +1,56 @@
-// to check mood is HAPPPY or SAD
-
 package com.bridgelabz.moodanalyzer;
 
 public class MoodAnalyzer {
 
     private String message;
 
-    // Default constructor
     public MoodAnalyzer() {
+        this.message = "";
     }
 
-    // Constructor with message parameter
     public MoodAnalyzer(String message) {
         this.message = message;
     }
 
-    // without constructor
-    public String analyseMood(String message) {
-
-        if (message.toLowerCase().contains("sad")) {
-            return "Sad";
+    // Analyze mood based on instance message
+    public String analyseMood() throws MoodAnalysisException {
+        validateMood(this.message);
+        if (this.message.toLowerCase().contains("sad")) {
+            return "SAD";
         } else {
-            return "Happy";
+            return "HAPPY";
         }
     }
 
-    // Using exception
-    public String analyseMood() {
-        try {
-            if (this.message.contains("Sad")) {
-                return "Sad";
-            } else {
-                return "Happy"; // Return Happy for any other message including "Happy"
-            }
-        } catch (NullPointerException e) {
-            // Handle null scenario by returning Happy
-            return "Happy";
+    // Analyze mood based on a passed message
+    public String analyseMood(String message) throws MoodAnalysisException {
+        validateMood(message);
+        if (message.toLowerCase().contains("sad")) {
+            return "SAD";
+        } else {
+            return "HAPPY";
+        }
+    }
+
+    // Helper method to validate mood and throw exceptions
+    private void validateMood(String mood) throws MoodAnalysisException {
+        if (mood == null) {
+            throw new MoodAnalysisException("Mood cannot be null", MoodAnalysisErrorType.NULL_MOOD);
+        }
+        if (mood.trim().isEmpty()) {
+            throw new MoodAnalysisException("Mood cannot be empty", MoodAnalysisErrorType.EMPTY_MOOD);
         }
     }
 
     public static void main(String[] args) {
-        MoodAnalyzer moodAnalyser = new MoodAnalyzer();
+        try {
+            MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am in Happy Mood");
+            System.out.println("Mood: " + moodAnalyzer.analyseMood());
 
-        String message = "I am in any mood";
-        String mood = moodAnalyser.analyseMood(message);
-
-        System.out.println("Mood: " + mood);
-
-        MoodAnalyzer moodAnalyzerWithNull = new MoodAnalyzer(null);  // Invalid input (null)
-        String m = moodAnalyzerWithNull.analyseMood();
-        System.out.println("Mood: " + m);
-
+            moodAnalyzer = new MoodAnalyzer("");
+            System.out.println("Mood: " + moodAnalyzer.analyseMood());
+        } catch (MoodAnalysisException e) {
+            System.out.println("Error: " + e.getMessage() + " (" + e.getErrorType() + ")");
+        }
     }
 }
